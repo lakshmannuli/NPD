@@ -53,6 +53,9 @@
     <Compile Include="EntityFramework\company.cs">
       <DependentUpon>NPDDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntityFramework\errorlog.cs">
+      <DependentUpon>NPDDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityFramework\Fault.cs">
       <DependentUpon>NPDDataModel.tt</DependentUpon>
     </Compile>

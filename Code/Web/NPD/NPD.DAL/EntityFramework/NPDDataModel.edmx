@@ -21,6 +21,20 @@
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="errorlog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="2000" />
+          <Property Name="Description" Type="varchar" MaxLength="2000" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="Filename" Type="nvarchar" MaxLength="100" />
+          <Property Name="Methodname" Type="nvarchar" MaxLength="100" />
+          <Property Name="Url" Type="nvarchar" MaxLength="100" />
+          <Property Name="Ip" Type="nvarchar" MaxLength="100" />
+          <Property Name="Classname" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="FaultComplexity">
           <Key>
             <PropertyRef Name="Id" />
@@ -72,6 +86,7 @@
         </EntityType>
         <EntityContainer Name="NPDModelStoreContainer">
           <EntitySet Name="company" EntityType="Self.company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="errorlog" EntityType="Self.errorlog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FaultComplexity" EntityType="Self.FaultComplexity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FaultPriorities" EntityType="Self.FaultPriorities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Faults" EntityType="Self.Faults" Schema="dbo" store:Type="Tables" />
@@ -137,6 +152,7 @@
           <EntitySet Name="FaultPriorities" EntityType="Self.FaultPriority" />
           <EntitySet Name="Faults" EntityType="Self.Fault" />
           <EntitySet Name="UsersInfoes" EntityType="NPDModel.UsersInfo" />
+          <EntitySet Name="errorlogs" EntityType="NPDModel.errorlog" />
         </EntityContainer>
         <EntityType Name="UsersInfo">
           <Key>
@@ -152,6 +168,20 @@
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="errorlog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Message" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="Filename" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Methodname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Ip" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Classname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -225,6 +255,21 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="errorlogs">
+            <EntityTypeMapping TypeName="NPDModel.errorlog">
+              <MappingFragment StoreEntitySet="errorlog">
+                <ScalarProperty Name="Classname" ColumnName="Classname" />
+                <ScalarProperty Name="Ip" ColumnName="Ip" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Methodname" ColumnName="Methodname" />
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

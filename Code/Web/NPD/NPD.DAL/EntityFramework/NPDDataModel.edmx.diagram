@@ -10,6 +10,7 @@
         <EntityTypeShape EntityType="NPDModel.FaultPriority" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NPDModel.Fault" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NPDModel.UsersInfo" Width="1.5" PointX="5.375" PointY="5.75" />
+        <EntityTypeShape EntityType="NPDModel.errorlog" Width="1.5" PointX="0.75" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
