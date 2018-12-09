@@ -81,6 +81,10 @@
       <DependentUpon>NPDDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CompanyRepository.cs" />
+    <Compile Include="Repositories\FaultComplexityRepository.cs" />
+    <Compile Include="Repositories\FaultPrioritiesRepository.cs" />
+    <Compile Include="Repositories\FaultRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace NPD_UI.Controllers
 {
-    public class JobController : Controller
+    public class JobController : BaseController
     {
         // GET: Job
         public ActionResult Index()

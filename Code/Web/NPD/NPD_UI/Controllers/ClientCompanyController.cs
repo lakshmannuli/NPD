@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace NPD_UI.Controllers
 {
-    public class ClientCompanyController : Controller
+    public class ClientCompanyController : BaseController
     {
         // GET: ClientCompany
         public ActionResult Index()
