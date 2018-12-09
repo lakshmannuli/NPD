@@ -1,4 +1,5 @@
-﻿using NPD.DAL.EntityFramework;
+﻿using NPD.DAL;
+using NPD.DAL.EntityFramework;
 using NPD.DAL.Repositories;
 using NPD.ViewModel;
 using System;
@@ -14,7 +15,7 @@ namespace NPD_UI.Controllers
         // GET: Job
         public ActionResult Index()
         {
-            var list = new List<Fault>();
+            var list = new List<CustomFault>();
             try
             {
                 if (TempData["Message"] != null)
@@ -23,7 +24,7 @@ namespace NPD_UI.Controllers
                     ViewBag.IsError = TempData["IsError"];
                 }
 
-                //list = CompanyRepository.GetAllActive().ToList();
+                list = FaultRepository.GetFaults(new Fault()).ToList();
             }
             catch (Exception ex)
             {
@@ -78,7 +79,7 @@ namespace NPD_UI.Controllers
                     CreatedBy = this.CurrentSession.LoggedUser.Id,
                     Complexity = model.Complexity,
                     FaultDescription = model.FaultDescription,
-                    FaultStatus = 1,
+                    FaultStatus = model.Priority < 1 ? 0 : 1,
                     Location = model.Location,
                     MachineDescription = model.MachineDescription,
                     ModifiedBy = this.CurrentSession.LoggedUser.Id,

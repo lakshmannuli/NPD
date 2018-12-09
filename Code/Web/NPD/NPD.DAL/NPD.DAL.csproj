@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomFault.cs" />
     <Compile Include="EntityFramework\company.cs">
       <DependentUpon>NPDDataModel.tt</DependentUpon>
     </Compile>
