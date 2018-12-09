@@ -11,7 +11,11 @@ namespace NPD.DAL.Repositories
     {
         public int SaveCompany(company companyEntity)
         {
-            return 1;
+            using (var Context = new NPDEntities())
+            {
+                Context.Set<company>().Add(companyEntity);
+                return Context.SaveChanges();
+            }
         }
     }
 }

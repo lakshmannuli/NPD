@@ -1,4 +1,5 @@
-﻿
+﻿@using NPD.ViewModel
+@model CompanyDTO
 @{
     ViewBag.Title = "Add";
 }
@@ -6,61 +7,82 @@
     Add New Company
 </h3>
 
+
 <div class="panel panel-default">
     <div class="panel-body">
-        <form method="get" action="/" class="form-horizontal">
+        @using (Html.BeginForm("Add", "clientCompany", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            <div class="form-group">
+                <div class="col-sm-12">
+                    @if (ViewBag.IsError != null)
+                    {
+                        if (ViewBag.IsError == false)
+                        {
+                            <div class="alert alert-success">
+                                <b>Success&nbsp;:&nbsp;</b>@ViewBag.Message
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="alert alert-danger">
+                                <b>Error&nbsp;:&nbsp;</b>@ViewBag.Message
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
             <fieldset>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">* Company Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" />
+                        @Html.TextBoxFor(x => x.Name, new { @id = "txtName", @class = "form-control" })
                     </div>
                 </div>
             </fieldset>
-            <fieldset>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Address</label>
-                    <div class="col-sm-10">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <textarea rows="3" class="form-control note-editor"></textarea>
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Address</label>
+                        <div class="col-sm-10">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    @Html.TextAreaFor(x => x.Address, new { @id = "txtAddress", rows = "3", @class = "form-control note-editor" })
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </fieldset>
-            <fieldset>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Phone</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" />
+                </fieldset>
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Phone</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(x => x.Phone, new { @id = "txtPhone", @class = "form-control" })
+                        </div>
                     </div>
-                </div>
-            </fieldset>
-            <fieldset>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Fax</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" />
+                </fieldset>
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Fax</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(x => x.Fax, new { @id = "txtFax", @class = "form-control" })
+                        </div>
                     </div>
-                </div>
-            </fieldset>
-            <fieldset>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Email</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" />
+                </fieldset>
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(x => x.Email, new { @id = "txtEmail", @class = "form-control" })
+                        </div>
                     </div>
-                </div>
-            </fieldset>
-            <fieldset>
-                <div class="form-group">
-                    <label class="col-sm-4"></label>
-                    <div class="col-sm-8">
-                        <input type="submit" class="btn btn-primary" value="Save Details" />
+                </fieldset>
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-sm-4"></label>
+                        <div class="col-sm-8">
+                            <input type="submit" class="btn btn-primary" value="Save Details" />
+                        </div>
                     </div>
-                </div>
-            </fieldset>
-        </form>
+                </fieldset>
+        }
     </div>
 </div>
