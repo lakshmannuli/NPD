@@ -148,10 +148,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClientCompanyController.cs" />
     <Compile Include="Controllers\FormsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
+    <Compile Include="Custom\SessionStore.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -671,6 +673,7 @@
     <Folder Include="Vendor\x-editable\dist\bootstrap3-editable\css\" />
     <Folder Include="Vendor\x-editable\dist\bootstrap3-editable\img\" />
     <Folder Include="Vendor\x-editable\dist\bootstrap3-editable\js\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -689,6 +692,10 @@
     <ProjectReference Include="..\NPD.DAL\NPD.DAL.csproj">
       <Project>{758429ff-2d93-4d69-b9b2-6e6758c922c7}</Project>
       <Name>NPD.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NPD.ViewModel\NPD.ViewModel.csproj">
+      <Project>{77df2346-31f0-4748-a783-b2bf612c04cc}</Project>
+      <Name>NPD.ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
