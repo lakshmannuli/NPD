@@ -606,6 +606,7 @@
     <Content Include="Views\ClientCompany\Add.cshtml" />
     <Content Include="Views\Job\Add.cshtml" />
     <Content Include="Views\ClientCompany\Index.cshtml" />
+    <Content Include="Views\Job\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
