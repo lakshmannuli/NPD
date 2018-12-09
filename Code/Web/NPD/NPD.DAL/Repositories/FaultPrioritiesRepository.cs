@@ -13,7 +13,7 @@ namespace NPD.DAL.Repositories
         {
             using (var Context = new NPDEntities())
             {
-                return Context.FaultPriorities.OrderBy(x => x.Id);
+                return Context.FaultPriorities.OrderBy(x => x.Id).ToList();
             }
         }
     }

@@ -605,6 +605,7 @@
     <Content Include="Vendor\simple-line-icons\fonts\Simple-Line-Icons.woff2" />
     <Content Include="Views\ClientCompany\Add.cshtml" />
     <Content Include="Views\Job\Add.cshtml" />
+    <Content Include="Views\ClientCompany\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

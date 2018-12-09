@@ -14,7 +14,24 @@ namespace NPD_UI.Controllers
         // GET: ClientCompany
         public ActionResult Index()
         {
-            return View();
+            var list = new List<company>();
+            try
+            {
+                if (TempData["Message"] != null)
+                {
+                    ViewBag.Message = TempData["Message"];
+                    ViewBag.IsError = TempData["IsError"];
+                }
+
+                list = CompanyRepository.GetAllActive().ToList();
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = "Failed to get companies";
+                ViewBag.IsError = false;
+            }
+          
+            return View(list);
         }
 
         public ActionResult Add()
@@ -58,12 +75,15 @@ namespace NPD_UI.Controllers
                     Status = 1
                 };
 
-                var repo = new CompanyRepository();
-                repo.SaveCompany(company);
+                CompanyRepository.SaveCompany(company);
+                TempData["Message"] = "Company added successfully !!!";
+                TempData["IsError"] = false;
+                return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
-                throw;
+                ViewBag.Message = "Failed to save company";
+                ViewBag.IsError = true;
             }
             return View(model);
         }
