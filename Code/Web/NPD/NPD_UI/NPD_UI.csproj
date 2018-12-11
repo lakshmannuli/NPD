@@ -153,6 +153,7 @@
     <Compile Include="Controllers\FormsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
+    <Compile Include="Controllers\TablesController.cs" />
     <Compile Include="Custom\SessionStore.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -306,6 +307,30 @@
     <Content Include="Vendor\animo.js\animo.js" />
     <Content Include="Vendor\bootstrap\dist\css\bootstrap.css" />
     <Content Include="Vendor\bootstrap\dist\js\bootstrap.js" />
+    <Content Include="Vendor\datatables-buttons\js\buttons.bootstrap.js" />
+    <Content Include="Vendor\datatables-buttons\js\buttons.bootstrap4.js" />
+    <Content Include="Vendor\datatables-buttons\js\buttons.colVis.js" />
+    <Content Include="Vendor\datatables-buttons\js\buttons.flash.js" />
+    <Content Include="Vendor\datatables-buttons\js\buttons.foundation.js" />
+    <Content Include="Vendor\datatables-buttons\js\buttons.html5.js" />
+    <Content Include="Vendor\datatables-buttons\js\buttons.jqueryui.js" />
+    <Content Include="Vendor\datatables-buttons\js\buttons.print.js" />
+    <Content Include="Vendor\datatables-buttons\js\buttons.semanticui.js" />
+    <Content Include="Vendor\datatables-buttons\js\dataTables.buttons.js" />
+    <Content Include="Vendor\datatables-colvis\css\dataTables.colVis.css" />
+    <Content Include="Vendor\datatables-colvis\js\dataTables.colVis.js" />
+    <Content Include="Vendor\datatables-responsive\js\dataTables.responsive.js" />
+    <Content Include="Vendor\datatables-responsive\js\responsive.bootstrap.js" />
+    <Content Include="Vendor\dataTables.fontAwesome\index.css" />
+    <Content Include="Vendor\datatables\media\css\dataTables.bootstrap.css" />
+    <Content Include="Vendor\datatables\media\images\favicon.ico" />
+    <Content Include="Vendor\datatables\media\images\sort_asc.png" />
+    <Content Include="Vendor\datatables\media\images\sort_asc_disabled.png" />
+    <Content Include="Vendor\datatables\media\images\sort_both.png" />
+    <Content Include="Vendor\datatables\media\images\sort_desc.png" />
+    <Content Include="Vendor\datatables\media\images\sort_desc_disabled.png" />
+    <Content Include="Vendor\datatables\media\js\dataTables.bootstrap.js" />
+    <Content Include="Vendor\datatables\media\js\jquery.dataTables.min.js" />
     <Content Include="Vendor\fontawesome\css\font-awesome.min.css" />
     <Content Include="Vendor\fontawesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Vendor\jQuery-Storage-API\jquery.storageapi.js" />
@@ -607,6 +632,19 @@
     <Content Include="Views\Job\Add.cshtml" />
     <Content Include="Views\ClientCompany\Index.cshtml" />
     <Content Include="Views\Job\Index.cshtml" />
+    <Content Include="Vendor\datatables-buttons\css\buttons.bootstrap.scss" />
+    <Content Include="Vendor\datatables-buttons\css\buttons.bootstrap4.scss" />
+    <Content Include="Vendor\datatables-buttons\css\buttons.dataTables.scss" />
+    <Content Include="Vendor\datatables-buttons\css\buttons.foundation.scss" />
+    <Content Include="Vendor\datatables-buttons\css\buttons.jqueryui.scss" />
+    <Content Include="Vendor\datatables-buttons\css\buttons.semanticui.scss" />
+    <Content Include="Vendor\datatables-buttons\css\common.scss" />
+    <Content Include="Vendor\datatables-buttons\css\mixins.scss" />
+    <Content Include="Vendor\datatables\media\images\Sorting icons.psd" />
+    <Content Include="Views\Tables\TableDatatable.cshtml" />
+    <Content Include="Views\Tables\TableExtended.cshtml" />
+    <Content Include="Views\Tables\TableJQGrid.cshtml" />
+    <Content Include="Views\Tables\TableStandard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -629,15 +667,6 @@
     <Folder Include="Vendor\chosen_v1.2.0\" />
     <Folder Include="Vendor\cropper\dist\" />
     <Folder Include="Vendor\d3\" />
-    <Folder Include="Vendor\datatables-buttons\css\" />
-    <Folder Include="Vendor\datatables-buttons\js\" />
-    <Folder Include="Vendor\datatables-colvis\css\" />
-    <Folder Include="Vendor\datatables-colvis\js\" />
-    <Folder Include="Vendor\datatables-responsive\js\" />
-    <Folder Include="Vendor\dataTables.fontAwesome\" />
-    <Folder Include="Vendor\datatables\media\css\" />
-    <Folder Include="Vendor\datatables\media\images\" />
-    <Folder Include="Vendor\datatables\media\js\" />
     <Folder Include="Vendor\eonasdan-bootstrap-datetimepicker\build\css\" />
     <Folder Include="Vendor\eonasdan-bootstrap-datetimepicker\build\js\" />
     <Folder Include="Vendor\fastclick\lib\" />

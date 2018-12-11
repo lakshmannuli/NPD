@@ -27,15 +27,10 @@
             infoEmpty:    'No records available',
             infoFiltered: '(filtered from _MAX_ total records)'
         },
+        "order": [[4, "asc"]]
         // Datatable Buttons setup
-        dom: '<"html5buttons"B>lTfgitp',
-        buttons: [
-            {extend: 'copy',  className: 'btn-sm' },
-            {extend: 'csv',   className: 'btn-sm' },
-            {extend: 'excel', className: 'btn-sm', title: 'XLS-File'},
-            {extend: 'pdf',   className: 'btn-sm', title: $('title').text() },
-            {extend: 'print', className: 'btn-sm' }
-        ]
+        
+      
     });
 
 

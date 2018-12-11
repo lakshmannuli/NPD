@@ -124,7 +124,31 @@ namespace NPD_UI
             "~/Vendor/select2-bootstrap-theme/dist/select2-bootstrap.css"
           ));
 
+            bundles.Add(new ScriptBundle("~/bundles/demoDatatable").Include(
+              "~/Scripts/demo/demo-datatable.js"
+          ));
 
+            bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
+           "~/Vendor/datatables/media/js/jquery.dataTables.min.js",
+           "~/Vendor/datatables-colvis/js/dataTables.colVis.js",
+           "~/Vendor/datatables/media/js/dataTables.bootstrap.js",
+           // Buttons
+           "~/Vendor/datatables-buttons/js/dataTables.buttons.js",
+           //"~/Vendor/datatables-buttons/css/buttons.bootstrap.css",
+           "~/Vendor/datatables-buttons/js/buttons.bootstrap.js",
+           "~/Vendor/datatables-buttons/js/buttons.colVis.js",
+           "~/Vendor/datatables-buttons/js/buttons.flash.js",
+           "~/Vendor/datatables-buttons/js/buttons.html5.js",
+           "~/Vendor/datatables-buttons/js/buttons.print.js",
+           "~/Vendor/datatables-responsive/js/dataTables.responsive.js",
+           "~/Vendor/datatables-responsive/js/responsive.bootstrap.js"
+         ));
+
+            bundles.Add(new StyleBundle("~/bundles/datatablesCss")
+           .Include("~/Vendor/datatables-colvis/css/dataTables.colVis.css", new CssRewriteUrlTransform())
+           .Include("~/Vendor/datatables/media/css/dataTables.bootstrap.css", new CssRewriteUrlTransform())
+           .Include("~/Vendor/dataTables.fontAwesome/index.css", new CssRewriteUrlTransform())
+         );
 
         }
     }
