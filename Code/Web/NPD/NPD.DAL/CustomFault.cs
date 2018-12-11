@@ -18,16 +18,26 @@ namespace NPD.DAL
         public string FaultStatus { set; get; }
         public string AssignedTo { set; get; }
         public DateTime StartDate { set; get; }
+        public Nullable<System.DateTime> CreatedDate { set; get; }
 
         public string DisplayStartDate
         {
             get
             {
                 var str = "-";
-                str = StartDate != DateTime.MinValue ? StartDate.ToString("MM/dd/yyyy") : str;
+                str = StartDate != null && StartDate != DateTime.MinValue ? StartDate.ToString("MM/dd/yyyy") : str;
                 return str;
             }
         }
 
+        public string DisplayCreatedDate
+        {
+            get
+            {
+                var str = "-";
+                str = CreatedDate != null && CreatedDate != DateTime.MinValue ? Convert.ToDateTime(CreatedDate).ToString("MM/dd/yyyy") : str;
+                return str;
+            }
+        }
     }
 }

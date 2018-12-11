@@ -30,7 +30,7 @@ namespace NPD_UI.Controllers
             catch (Exception ex)
             {
                 ViewBag.Message = "Failed to get faults";
-                ViewBag.IsError = false;
+                ViewBag.IsError = true;
             }
 
             return View(list);

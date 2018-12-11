@@ -29,16 +29,17 @@ namespace NPD.DAL.Repositories
                         where f.Status == 1
                         select new CustomFault()
                         {
-                            CompanyName=co.Name,
+                            CompanyName = co.Name,
                             AssignedTo = u.Name,
-                            Complexity=c.Name,
-                            FaultDescription=f.FaultDescription,
-                            FaultStatus="",
-                            Location=f.Location,
-                            MachineDescription=f.MachineDescription,
-                            Priority=p.Name
-                            
-                        }).ToList();
+                            Complexity = c.Name,
+                            FaultDescription = f.FaultDescription,
+                            FaultStatus = "",
+                            Location = f.Location,
+                            MachineDescription = f.MachineDescription,
+                            Priority = p.Name,
+                            CreatedDate = f.CreatedDate
+
+                        }).OrderByDescending(x => x.Complexity).ToList();
             }
         }
     }
