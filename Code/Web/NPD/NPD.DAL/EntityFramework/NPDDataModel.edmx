@@ -42,6 +42,20 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="500" />
         </EntityType>
+        <EntityType Name="FaultLibrary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FaultId" Type="int" />
+          <Property Name="Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Status" Type="int" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="FaultPriorities">
           <Key>
             <PropertyRef Name="Id" />
@@ -84,13 +98,32 @@
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
         </EntityType>
+        <Association Name="FK_FaultLibrary_Faults">
+          <End Role="Faults" Type="Self.Faults" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FaultLibrary" Type="Self.FaultLibrary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faults">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FaultLibrary">
+              <PropertyRef Name="FaultId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="NPDModelStoreContainer">
           <EntitySet Name="company" EntityType="Self.company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="errorlog" EntityType="Self.errorlog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FaultComplexity" EntityType="Self.FaultComplexity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FaultLibrary" EntityType="Self.FaultLibrary" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FaultPriorities" EntityType="Self.FaultPriorities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Faults" EntityType="Self.Faults" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsersInfo" EntityType="Self.UsersInfo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_FaultLibrary_Faults" Association="Self.FK_FaultLibrary_Faults">
+            <End Role="Faults" EntitySet="Faults" />
+            <End Role="FaultLibrary" EntitySet="FaultLibrary" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -145,6 +178,7 @@
           <Property Name="CreatedBy" Type="Int32" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="FaultLibraries" Relationship="NPDModel.FK_FaultLibrary_Faults" FromRole="Fault" ToRole="FaultLibrary" />
         </EntityType>
         <EntityContainer Name="NPDEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="companies" EntityType="Self.company" />
@@ -153,6 +187,11 @@
           <EntitySet Name="Faults" EntityType="Self.Fault" />
           <EntitySet Name="UsersInfoes" EntityType="NPDModel.UsersInfo" />
           <EntitySet Name="errorlogs" EntityType="NPDModel.errorlog" />
+          <EntitySet Name="FaultLibraries" EntityType="NPDModel.FaultLibrary" />
+          <AssociationSet Name="FK_FaultLibrary_Faults" Association="NPDModel.FK_FaultLibrary_Faults">
+            <End Role="Fault" EntitySet="Faults" />
+            <End Role="FaultLibrary" EntitySet="FaultLibraries" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsersInfo">
           <Key>
@@ -183,6 +222,35 @@
           <Property Name="Ip" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Classname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="FaultLibrary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FaultId" Type="Int32" />
+          <Property Name="Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FileName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Fault" Relationship="NPDModel.FK_FaultLibrary_Faults" FromRole="FaultLibrary" ToRole="Fault" />
+        </EntityType>
+        <Association Name="FK_FaultLibrary_Faults">
+          <End Type="NPDModel.Fault" Role="Fault" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="NPDModel.FaultLibrary" Role="FaultLibrary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fault">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FaultLibrary">
+              <PropertyRef Name="FaultId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -270,6 +338,21 @@
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FaultLibraries">
+            <EntityTypeMapping TypeName="NPDModel.FaultLibrary">
+              <MappingFragment StoreEntitySet="FaultLibrary">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="FaultId" ColumnName="FaultId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

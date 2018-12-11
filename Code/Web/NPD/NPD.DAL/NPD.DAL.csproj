@@ -62,6 +62,9 @@
     <Compile Include="EntityFramework\FaultComplexity.cs">
       <DependentUpon>NPDDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntityFramework\FaultLibrary.cs">
+      <DependentUpon>NPDDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityFramework\FaultPriority.cs">
       <DependentUpon>NPDDataModel.tt</DependentUpon>
     </Compile>
@@ -88,6 +91,7 @@
     <Compile Include="Repositories\FaultComplexityRepository.cs" />
     <Compile Include="Repositories\FaultPrioritiesRepository.cs" />
     <Compile Include="Repositories\FaultRepository.cs" />
+    <Compile Include="Repositories\UsersinfoRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

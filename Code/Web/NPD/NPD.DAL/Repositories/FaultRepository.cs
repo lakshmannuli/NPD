@@ -25,11 +25,12 @@ namespace NPD.DAL.Repositories
                         join p in Context.FaultPriorities on f.Priority equals p.Id
                         join c in Context.FaultComplexities on f.Complexity equals c.Id
                         join co in Context.companies on f.CompanyId equals co.Id
+                        join u in Context.UsersInfoes on f.AssignedTo equals u.Id
                         where f.Status == 1
                         select new CustomFault()
                         {
                             CompanyName=co.Name,
-                            AssignedTo = "",
+                            AssignedTo = u.Name,
                             Complexity=c.Name,
                             FaultDescription=f.FaultDescription,
                             FaultStatus="",

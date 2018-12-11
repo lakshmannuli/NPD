@@ -23,7 +23,7 @@ namespace NPD.DAL
         {
             get
             {
-                var str = "NotStartDate";
+                var str = "-";
                 str = StartDate != DateTime.MinValue ? StartDate.ToString("MM/dd/yyyy") : str;
                 return str;
             }

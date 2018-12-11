@@ -31,5 +31,6 @@ namespace NPD.DAL.EntityFramework
         public virtual DbSet<Fault> Faults { get; set; }
         public virtual DbSet<UsersInfo> UsersInfoes { get; set; }
         public virtual DbSet<errorlog> errorlogs { get; set; }
+        public virtual DbSet<FaultLibrary> FaultLibraries { get; set; }
     }
 }

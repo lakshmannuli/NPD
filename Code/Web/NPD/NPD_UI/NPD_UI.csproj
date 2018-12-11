@@ -610,6 +610,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="LibraryImages\" />
     <Folder Include="Models\" />
     <Folder Include="Vendor\blueimp-canvas-to-blob\js\" />
     <Folder Include="Vendor\blueimp-file-upload\css\" />

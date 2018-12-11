@@ -14,6 +14,12 @@ namespace NPD.DAL.EntityFramework
     
     public partial class Fault
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Fault()
+        {
+            this.FaultLibraries = new HashSet<FaultLibrary>();
+        }
+    
         public int Id { get; set; }
         public Nullable<int> CompanyId { get; set; }
         public string Location { get; set; }
@@ -29,5 +35,8 @@ namespace NPD.DAL.EntityFramework
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FaultLibrary> FaultLibraries { get; set; }
     }
 }
