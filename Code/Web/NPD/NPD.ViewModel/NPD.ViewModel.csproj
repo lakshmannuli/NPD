@@ -43,6 +43,7 @@
     <Compile Include="CompanyDTO.cs" />
     <Compile Include="FaultDTO.cs" />
     <Compile Include="LoggedUser.cs" />
+    <Compile Include="LoginDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

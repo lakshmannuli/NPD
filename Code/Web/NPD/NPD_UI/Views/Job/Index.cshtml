@@ -43,7 +43,7 @@
                                         <td>@job.DisplayCreatedDate</td>
                                         <td>@job.DisplayStartDate</td>
                                         <td>
-                                            <a class="btn btn-primary btn-xs" href="@Url.Action("Add", "SubCategories", new { id =0 })">
+                                            <a class="btn btn-primary btn-xs" href="@Url.Action("Add", "SubCategories", new { id =@job.Id })">>
                                                 <i class="fa fa-pencil"></i>
                                             </a>&nbsp;
                                         </td>
