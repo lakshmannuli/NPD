@@ -17,6 +17,25 @@ namespace NPD.DAL.Repositories
                 return Context.SaveChanges();
             }
         }
+        public static int UpdateFault(Fault model)
+        {
+            using (var Context = new NPDEntities())
+            {
+                var fault = Context.Faults.FirstOrDefault(x => x.Id == model.Id);
+                fault.CompanyId = model.CompanyId;
+                fault.Complexity = model.Complexity;
+                fault.FaultDescription = model.FaultDescription;
+                fault.FaultStatus = model.Priority < 1 ? 0 : 1;
+                fault.Location = model.Location;
+                fault.MachineDescription = model.MachineDescription;
+                fault.ModifiedBy = model.ModifiedBy;
+                fault.ModifiedDate = DateTime.Now;
+                fault.Priority = model.Priority;
+                fault.StartDate = DateTime.Now;
+                fault.AssignedTo = model.AssignedTo;
+                return Context.SaveChanges();
+            }
+        }
         public static IEnumerable<CustomFault> GetFaults(Fault fault)
         {
             using (var Context = new NPDEntities())
@@ -41,6 +60,15 @@ namespace NPD.DAL.Repositories
                             Id=f.Id
 
                         }).OrderByDescending(x => x.Complexity).ToList();
+            }
+        }
+
+
+        public static Fault GetFaultById(int id)
+        {
+            using (var Context = new NPDEntities())
+            {
+                return Context.Faults.FirstOrDefault(x => x.Id == id);
             }
         }
     }

@@ -55,6 +55,110 @@ namespace NPD_UI.Controllers
             return View(model);
         }
 
+        public ActionResult Edit(int id)
+        {
+            var model = new FaultDTO();
+            try
+            {
+                ViewBag.Priorities = FaultPrioritiesRepository.GetActivePriorities();
+                ViewBag.Complexities = FaultComplexityRepository.GetActiveComplexities();
+                ViewBag.Companies = CompanyRepository.GetAllActive();
+                ViewBag.Enigineers = UsersinfoRepository.GetAllActiveEngineers();
+
+                var fault = FaultRepository.GetFaultById(id);
+                if (fault != null)
+                {
+                    model.AssignedTo = fault.AssignedTo;
+                    model.CompanyId = fault.CompanyId;
+                    model.Complexity = fault.Complexity;
+                    model.FaultDescription = fault.FaultDescription;
+                    model.FaultStatus = fault.FaultStatus;
+                    model.Id = fault.Id;
+                    model.Location = fault.Location;
+                    model.MachineDescription = fault.MachineDescription;
+                    model.Priority = fault.Priority;
+                    model.StartDate = fault.StartDate;
+                    return View(model);
+                }
+                TempData["Message"] = "No job exists with this Id.";
+                TempData["IsError"] = true;
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(FaultDTO model)
+        {
+            ViewBag.Priorities = FaultPrioritiesRepository.GetActivePriorities();
+            ViewBag.Complexities = FaultComplexityRepository.GetActiveComplexities();
+            ViewBag.Companies = CompanyRepository.GetAllActive();
+            ViewBag.Enigineers = UsersinfoRepository.GetAllActiveEngineers();
+            try
+            {
+                if (model.CompanyId == null || model.CompanyId <= 0)
+                {
+                    ViewBag.Message = "Please select company";
+                    ViewBag.IsError = true;
+                    return View(model);
+                }
+                if (string.IsNullOrEmpty(model.Location))
+                {
+                    ViewBag.Message = "Please enter location name";
+                    ViewBag.IsError = true;
+                    return View(model);
+                }
+                if (model.Priority == null)
+                {
+                    ViewBag.Message = "Please select priority";
+                    ViewBag.IsError = true;
+                    return View(model);
+                }
+                if (model.Complexity == null)
+                {
+                    ViewBag.Message = "Please select complexity";
+                    ViewBag.IsError = true;
+                    return View(model);
+                }
+                if (model.AssignedTo == null || model.AssignedTo <= 0)
+                {
+                    ViewBag.Message = "Please select an engineer";
+                    ViewBag.IsError = true;
+                    return View(model);
+                }
+                var imageLibrary = new FaultLibrary();
+
+                var fault = FaultRepository.GetFaultById(model.Id);
+
+                fault.CompanyId = model.CompanyId;
+                fault.Complexity = model.Complexity;
+                fault.FaultDescription = model.FaultDescription;
+                fault.FaultStatus = model.Priority < 1 ? 0 : 1;
+                fault.Location = model.Location;
+                fault.MachineDescription = model.MachineDescription;
+                fault.ModifiedBy = this.CurrentSession.LoggedUser.Id;
+                fault.ModifiedDate = DateTime.Now;
+                fault.Priority = model.Priority;
+                fault.StartDate = DateTime.Now;
+                fault.AssignedTo = model.AssignedTo;
+
+                FaultRepository.UpdateFault(fault);
+                TempData["Message"] = "Job added successfully !!!";
+                TempData["IsError"] = false;
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = "Failed to save job details";
+                ViewBag.IsError = true;
+            }
+            return View(model);
+        }
+
         [HttpPost]
         public ActionResult Add(FaultDTO model, HttpPostedFileBase postedfile)
         {
@@ -76,13 +180,13 @@ namespace NPD_UI.Controllers
                     ViewBag.IsError = true;
                     return View(model);
                 }
-                if (model.Priority == null )
+                if (model.Priority == null)
                 {
                     ViewBag.Message = "Please select priority";
                     ViewBag.IsError = true;
                     return View(model);
                 }
-                if (model.Complexity == null )
+                if (model.Complexity == null)
                 {
                     ViewBag.Message = "Please select complexity";
                     ViewBag.IsError = true;
