@@ -2,6 +2,7 @@
 using NPD.DAL.EntityFramework;
 using NPD.DAL.Repositories;
 using NPD.ViewModel;
+using NPD_UI.Custom;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,6 +12,7 @@ using System.Web.Mvc;
 
 namespace NPD_UI.Controllers
 {
+    [CustomAuthorization]
     public class JobController : BaseController
     {
         // GET: Job

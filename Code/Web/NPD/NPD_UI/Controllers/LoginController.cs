@@ -40,7 +40,7 @@ namespace NPD_UI.Controllers
                     Password = model.Password
                 };
                 Session["LoggedUser"] = loggedUser;
-                return RedirectToAction("Index", "Dashboard");
+                return RedirectToAction("Index", "Job");
             }
             catch (Exception ex)
             {

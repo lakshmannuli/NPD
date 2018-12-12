@@ -1,5 +1,4 @@
-﻿using NPD_UI.Custom;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,10 +6,9 @@ using System.Web.Mvc;
 
 namespace NPD_UI.Controllers
 {
-    [CustomAuthorization]
-    public class DashboardController : Controller
+    public class AccessDeniedController : Controller
     {
-        // GET: Dashboard
+        // GET: AccessDenied
         public ActionResult Index()
         {
             return View();

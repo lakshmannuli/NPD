@@ -6,9 +6,11 @@ using System.Web;
 using System.Web.Mvc;
 using NPD.DAL.EntityFramework;
 using NPD.DAL.Repositories;
+using NPD_UI.Custom;
 
 namespace NPD_UI.Controllers
 {
+    [CustomAuthorization]
     public class ClientCompanyController : BaseController
     {
         // GET: ClientCompany
