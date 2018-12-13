@@ -96,7 +96,15 @@
                     </div>
                 </div>
             </fieldset>
-
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Start Date</label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(x => x.StartDate, new { @id = "txtStartDate", @class = "form-control" })
+                        <span><i>Date should be in MM/dd/yyyy</i></span>
+                    </div>
+                </div>
+            </fieldset>
             <fieldset>
                 <div class="form-group">
                     <label class="col-sm-4"></label>

@@ -140,6 +140,12 @@ namespace NPD_UI.Controllers
                     ViewBag.IsError = true;
                     return View(model);
                 }
+                if (model.StartDate==null)
+                {
+                    ViewBag.Message = "Please enter start date";
+                    ViewBag.IsError = true;
+                    return View(model);
+                }
                 var imageLibrary = new FaultLibrary();
 
                 var fault = FaultRepository.GetFaultById(model.Id);
@@ -153,7 +159,7 @@ namespace NPD_UI.Controllers
                 fault.ModifiedBy = this.CurrentSession.LoggedUser.Id;
                 fault.ModifiedDate = DateTime.Now;
                 fault.Priority = model.Priority;
-                fault.StartDate = DateTime.Now;
+                fault.StartDate = model.StartDate;
                 fault.AssignedTo = model.AssignedTo;
 
                 FaultRepository.UpdateFault(fault);

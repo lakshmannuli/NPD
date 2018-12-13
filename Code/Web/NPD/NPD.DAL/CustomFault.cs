@@ -17,7 +17,7 @@ namespace NPD.DAL
         public string Complexity { set; get; }
         public string FaultStatus { set; get; }
         public string AssignedTo { set; get; }
-        public DateTime StartDate { set; get; }
+        public DateTime? StartDate { set; get; }
         public Nullable<System.DateTime> CreatedDate { set; get; }
 
         public string DisplayStartDate
@@ -25,7 +25,7 @@ namespace NPD.DAL
             get
             {
                 var str = "-";
-                str = StartDate != null && StartDate != DateTime.MinValue ? StartDate.ToString("MM/dd/yyyy") : str;
+                str = StartDate != null && StartDate != DateTime.MinValue ? Convert.ToDateTime(StartDate).ToString("MM/dd/yyyy") : str;
                 return str;
             }
         }

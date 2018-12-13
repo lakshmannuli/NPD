@@ -57,7 +57,8 @@ namespace NPD.DAL.Repositories
                             MachineDescription = f.MachineDescription,
                             Priority = p.Name,
                             CreatedDate = f.CreatedDate,
-                            Id = f.Id
+                            Id = f.Id,
+                            StartDate = f.StartDate 
 
                         }).OrderByDescending(x => x.Complexity).ToList();
             }
