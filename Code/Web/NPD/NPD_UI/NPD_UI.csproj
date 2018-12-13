@@ -334,6 +334,8 @@
     <Content Include="Vendor\datatables\media\images\sort_desc_disabled.png" />
     <Content Include="Vendor\datatables\media\js\dataTables.bootstrap.js" />
     <Content Include="Vendor\datatables\media\js\jquery.dataTables.min.js" />
+    <Content Include="Vendor\eonasdan-bootstrap-datetimepicker\build\css\bootstrap-datetimepicker.min.css" />
+    <Content Include="Vendor\eonasdan-bootstrap-datetimepicker\build\js\bootstrap-datetimepicker.min.js" />
     <Content Include="Vendor\fontawesome\css\font-awesome.min.css" />
     <Content Include="Vendor\fontawesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Vendor\jQuery-Storage-API\jquery.storageapi.js" />
@@ -671,8 +673,6 @@
     <Folder Include="Vendor\chosen_v1.2.0\" />
     <Folder Include="Vendor\cropper\dist\" />
     <Folder Include="Vendor\d3\" />
-    <Folder Include="Vendor\eonasdan-bootstrap-datetimepicker\build\css\" />
-    <Folder Include="Vendor\eonasdan-bootstrap-datetimepicker\build\js\" />
     <Folder Include="Vendor\fastclick\lib\" />
     <Folder Include="Vendor\flatdoc\" />
     <Folder Include="Vendor\flot-spline\js\" />

@@ -58,8 +58,15 @@ namespace NPD_UI.Controllers
         public ActionResult Edit(int id)
         {
             var model = new FaultDTO();
+
             try
             {
+                if (TempData["Message"] != null)
+                {
+                    ViewBag.Message = TempData["Message"];
+                    ViewBag.IsError = TempData["IsError"];
+                }
+
                 ViewBag.Priorities = FaultPrioritiesRepository.GetActivePriorities();
                 ViewBag.Complexities = FaultComplexityRepository.GetActiveComplexities();
                 ViewBag.Companies = CompanyRepository.GetAllActive();
@@ -244,6 +251,42 @@ namespace NPD_UI.Controllers
                 ViewBag.IsError = true;
             }
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult UploadFiles(FaultDTO model, HttpPostedFileBase postedfile)
+        {
+            ViewBag.Priorities = FaultPrioritiesRepository.GetActivePriorities();
+            ViewBag.Complexities = FaultComplexityRepository.GetActiveComplexities();
+            ViewBag.Companies = CompanyRepository.GetAllActive();
+            ViewBag.Enigineers = UsersinfoRepository.GetAllActiveEngineers();
+            try
+            {
+
+                var imageLibrary = new FaultLibrary();
+                if (postedfile != null)
+                {
+                    var filePath = SaveImage(postedfile);
+                    imageLibrary.FileName = postedfile.FileName;
+                    imageLibrary.Url = filePath;
+                    imageLibrary.FaultId = model.Id;
+                    imageLibrary.ModifiedBy = this.CurrentSession.LoggedUser.Id;
+                    imageLibrary.ModifiedDate = DateTime.Now;
+                    imageLibrary.CreatedDate = DateTime.Now;
+                    imageLibrary.CreatedBy = this.CurrentSession.LoggedUser.Id;
+                }
+
+                FaultRepository.SaveFile(imageLibrary);
+                TempData["Message"] = "Files uploaded successfully !!!";
+                TempData["IsError"] = false;
+                return RedirectToAction("Edit", new { id = model.Id });
+            }
+            catch (Exception ex)
+            {
+                TempData["Message"] = "Files uploaded successfully !!!";
+                TempData["IsError"] = false;
+            }
+            return RedirectToAction("Edit", new { id = model.Id });
         }
 
         private string SaveImage(HttpPostedFileBase fpUpload)

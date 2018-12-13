@@ -62,6 +62,10 @@ namespace NPD_UI
                 "~/Scripts/app/modules/select2.js"
             ));
 
+            bundles.Add(new ScriptBundle("~/bundles/moment").Include(
+        "~/Vendor/moment/min/moment-with-locales.min.js"
+      ));
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                       "~/Vendor/jquery/dist/jquery.js"
           ));
@@ -101,7 +105,13 @@ namespace NPD_UI
                "~/Scripts/demo/demo-rtl.js"
            ));
 
+            bundles.Add(new ScriptBundle("~/bundles/datetimePicker").Include(
+           "~/Vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"
+         ));
 
+            bundles.Add(new StyleBundle("~/bundles/datetimePickerCss").Include(
+                "~/Vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"
+            ));
 
 
             bundles.Add(new StyleBundle("~/bundles/fontawesome").Include(

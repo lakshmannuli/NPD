@@ -71,5 +71,14 @@ namespace NPD.DAL.Repositories
                 return Context.Faults.FirstOrDefault(x => x.Id == id);
             }
         }
+
+        public static int SaveFile(FaultLibrary entity)
+        {
+            using (var Context = new NPDEntities())
+            {
+                Context.Set<FaultLibrary>().Add(entity);
+                return Context.SaveChanges();
+            }
+        }
     }
 }

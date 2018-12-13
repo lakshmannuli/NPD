@@ -11,7 +11,7 @@
     <div class="panel-body">
         @using (Html.BeginForm("Edit", "Job", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
         {
-            @Html.HiddenFor(x=>x.Id)
+            @Html.HiddenFor(x => x.Id)
             <div class="form-group">
                 <div class="col-sm-12">
                     @if (ViewBag.IsError != null)
@@ -95,7 +95,35 @@
                     </div>
                 </div>
             </fieldset>
-       
+
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-sm-4"></label>
+                    <div class="col-sm-8">
+                        <input type="submit" class="btn btn-primary" value="Save Details" />
+                    </div>
+                </div>
+            </fieldset>
+        }
+    </div>
+</div>
+
+<br />
+<br />
+<div class="panel panel-default">
+    <div class="panel-heading">Upload Files</div>
+    <div class="panel-body">
+        @using (Html.BeginForm("UploadFiles", "Job", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+        {
+            @Html.HiddenFor(x => x.Id)
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Upload Files</label>
+                    <div class="col-sm-10">
+                        <input type="file" class="form-control" name="postedfile" id="flpUpload" />
+                    </div>
+                </div>
+            </fieldset>
             <fieldset>
                 <div class="form-group">
                     <label class="col-sm-4"></label>
