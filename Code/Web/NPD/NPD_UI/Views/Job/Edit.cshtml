@@ -1,4 +1,5 @@
 ﻿@using NPD.ViewModel
+@using NPD_UI.Custom
 @model FaultDTO
 @{
     ViewBag.Title = "Add";
@@ -113,6 +114,26 @@
 <div class="panel panel-default">
     <div class="panel-heading">Upload Files</div>
     <div class="panel-body">
+        @if (ViewBag.UploadedFiles != null)
+        {
+            <fieldset>
+                <div class="form-group">
+                   <ul>
+                       @foreach(var file in ViewBag.UploadedFiles)
+                       {
+                           <li>
+                               <a 
+                                  href="@string.Format("{0}/LibraryImages/{1}", HelperClasses.GetFullyQualifiedApplicationPath(),@file.Url)" 
+                                  target="_blank">
+                                   @file.FileName
+                               </a>
+                           </li>
+                       }
+                   </ul>
+                </div>
+            </fieldset>
+        }
+      
         @using (Html.BeginForm("UploadFiles", "Job", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
         {
             @Html.HiddenFor(x => x.Id)

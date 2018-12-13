@@ -157,6 +157,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\TablesController.cs" />
     <Compile Include="Custom\CustomAuthorization.cs" />
+    <Compile Include="Custom\HelperClasses.cs" />
     <Compile Include="Custom\SessionStore.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

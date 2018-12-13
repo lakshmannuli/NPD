@@ -71,6 +71,7 @@ namespace NPD_UI.Controllers
                 ViewBag.Complexities = FaultComplexityRepository.GetActiveComplexities();
                 ViewBag.Companies = CompanyRepository.GetAllActive();
                 ViewBag.Enigineers = UsersinfoRepository.GetAllActiveEngineers();
+                ViewBag.UploadedFiles = FaultRepository.GetFilesByFaultId(id);
 
                 var fault = FaultRepository.GetFaultById(id);
                 if (fault != null)
@@ -105,6 +106,8 @@ namespace NPD_UI.Controllers
             ViewBag.Complexities = FaultComplexityRepository.GetActiveComplexities();
             ViewBag.Companies = CompanyRepository.GetAllActive();
             ViewBag.Enigineers = UsersinfoRepository.GetAllActiveEngineers();
+            ViewBag.UploadedFiles = FaultRepository.GetFilesByFaultId(model.Id);
+
             try
             {
                 if (model.CompanyId == null || model.CompanyId <= 0)
@@ -260,6 +263,8 @@ namespace NPD_UI.Controllers
             ViewBag.Complexities = FaultComplexityRepository.GetActiveComplexities();
             ViewBag.Companies = CompanyRepository.GetAllActive();
             ViewBag.Enigineers = UsersinfoRepository.GetAllActiveEngineers();
+            ViewBag.UploadedFiles = FaultRepository.GetFilesByFaultId(model.Id);
+
             try
             {
 

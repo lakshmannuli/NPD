@@ -57,7 +57,7 @@ namespace NPD.DAL.Repositories
                             MachineDescription = f.MachineDescription,
                             Priority = p.Name,
                             CreatedDate = f.CreatedDate,
-                            Id=f.Id
+                            Id = f.Id
 
                         }).OrderByDescending(x => x.Complexity).ToList();
             }
@@ -78,6 +78,14 @@ namespace NPD.DAL.Repositories
             {
                 Context.Set<FaultLibrary>().Add(entity);
                 return Context.SaveChanges();
+            }
+        }
+
+        public static IEnumerable<FaultLibrary> GetFilesByFaultId(int id)
+        {
+            using (var Context = new NPDEntities())
+            {
+                return Context.FaultLibraries.Where(x => x.FaultId == id).OrderByDescending(x => x.Id).ToList();
             }
         }
     }
