@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NPD.DAL", "NPD.DAL\NPD.DAL.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NPD.ViewModel", "NPD.ViewModel\NPD.ViewModel.csproj", "{77DF2346-31F0-4748-A783-B2BF612C04CC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NPD_Win_UI", "NPD_Win_UI\NPD_Win_UI.csproj", "{170CEDA0-549E-49CF-82EE-553990CDFC70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{77DF2346-31F0-4748-A783-B2BF612C04CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77DF2346-31F0-4748-A783-B2BF612C04CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77DF2346-31F0-4748-A783-B2BF612C04CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{170CEDA0-549E-49CF-82EE-553990CDFC70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{170CEDA0-549E-49CF-82EE-553990CDFC70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{170CEDA0-549E-49CF-82EE-553990CDFC70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{170CEDA0-549E-49CF-82EE-553990CDFC70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
