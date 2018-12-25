@@ -33,6 +33,20 @@ namespace NPD_Win_UI
             pnlMaster.Controls.Add(frm);
         }
 
+        public void AddJobs()
+        {
+            ucAddJobs frm = new ucAddJobs(this);
+            pnlMaster.Controls.Clear();
+            pnlMaster.Controls.Add(frm);
+        }
+
+        public void ViewJobs()
+        {
+            ucViewJobs frm = new ucViewJobs(this);
+            pnlMaster.Controls.Clear();
+            pnlMaster.Controls.Add(frm);
+        }
+
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddCompanies();
@@ -41,6 +55,21 @@ namespace NPD_Win_UI
         private void viewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LoadAllCompanies();
+        }
+
+        private void newToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            AddJobs();
+        }
+
+        private void viewToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ViewJobs();
+        }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
