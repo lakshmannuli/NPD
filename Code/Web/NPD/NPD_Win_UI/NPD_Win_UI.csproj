@@ -79,6 +79,12 @@
     <Compile Include="UserControls\frmAddClientCompanies.Designer.cs">
       <DependentUpon>frmAddClientCompanies.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\frmViewCompanies.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\frmViewCompanies.Designer.cs">
+      <DependentUpon>frmViewCompanies.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="frmMaster.resx">
       <DependentUpon>frmMaster.cs</DependentUpon>
     </EmbeddedResource>
@@ -96,6 +102,9 @@
     </Compile>
     <EmbeddedResource Include="UserControls\frmAddClientCompanies.resx">
       <DependentUpon>frmAddClientCompanies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\frmViewCompanies.resx">
+      <DependentUpon>frmViewCompanies.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

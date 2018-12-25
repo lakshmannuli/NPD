@@ -15,9 +15,16 @@ namespace NPD_Win_UI.UserControls
 {
     public partial class frmAddClientCompanies : UserControl
     {
+        frmMaster _parent;
+
         public frmAddClientCompanies()
         {
             InitializeComponent();
+        }
+
+        public frmAddClientCompanies(frmMaster parent) : this()
+        {
+            _parent = parent;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -45,6 +52,7 @@ namespace NPD_Win_UI.UserControls
 
                 CompanyRepository.SaveCompany(company);
                 MessageBox.Show("Company Added Successfully !!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _parent.LoadAllCompanies();
             }
             catch (Exception ex)
             {

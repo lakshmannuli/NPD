@@ -16,13 +16,31 @@ namespace NPD_Win_UI
         public frmMaster()
         {
             InitializeComponent();
-            frmAddClientCompanies frm = new frmAddClientCompanies();
+            LoadAllCompanies();
+        }
+
+        public void LoadAllCompanies()
+        {
+            frmViewCompanies frm = new frmViewCompanies(this);
+            pnlMaster.Controls.Clear();
+            pnlMaster.Controls.Add(frm);
+            
+        }
+        public void AddCompanies()
+        {
+            frmAddClientCompanies frm = new frmAddClientCompanies(this);
+            pnlMaster.Controls.Clear();
             pnlMaster.Controls.Add(frm);
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            AddCompanies();
+        }
 
+        private void viewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadAllCompanies();
         }
     }
 }
