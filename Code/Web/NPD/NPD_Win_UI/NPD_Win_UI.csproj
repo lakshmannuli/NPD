@@ -59,6 +59,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmEditJob.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEditJob.Designer.cs">
+      <DependentUpon>frmEditJob.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMaster.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,12 +97,21 @@
     <Compile Include="UserControls\ucAddJobs.Designer.cs">
       <DependentUpon>ucAddJobs.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ucEditJobs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucEditJobs.Designer.cs">
+      <DependentUpon>ucEditJobs.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ucViewJobs.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\ucViewJobs.Designer.cs">
       <DependentUpon>ucViewJobs.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmEditJob.resx">
+      <DependentUpon>frmEditJob.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMaster.resx">
       <DependentUpon>frmMaster.cs</DependentUpon>
     </EmbeddedResource>
@@ -120,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucAddJobs.resx">
       <DependentUpon>ucAddJobs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucEditJobs.resx">
+      <DependentUpon>ucEditJobs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucViewJobs.resx">
       <DependentUpon>ucViewJobs.cs</DependentUpon>
@@ -147,6 +165,9 @@
       <Project>{77df2346-31f0-4748-a783-b2bf612c04cc}</Project>
       <Name>NPD.ViewModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="LibraryImages\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

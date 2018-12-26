@@ -9,12 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NPD.DAL.Repositories;
 using NPD.DAL.EntityFramework;
+using NPD.DAL;
 
 namespace NPD_Win_UI.UserControls
 {
     public partial class ucViewJobs : UserControl
     {
         frmMaster _parent;
+        List<CustomFault> Faults { set; get; }
         public ucViewJobs()
         {
             InitializeComponent();
@@ -29,11 +31,31 @@ namespace NPD_Win_UI.UserControls
         {
             try
             {
-                var list = FaultRepository.GetFaults(new Fault()).ToList();
-                dataGridView1.DataSource = list;
+                Faults = FaultRepository.GetFaults(new Fault()).ToList();
+                dataGridView1.AutoGenerateColumns = false;
+                dataGridView1.DataSource = Faults;
             }
             catch (Exception ex)
             {
+                MessageBox.Show("Failed to load form", "Error !!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                //if (e.RowIndex >= Faults.Count() - 1 && e.RowIndex <= Faults.Count() - 1)
+                {
+                    var faultObj = Faults[e.RowIndex];
+                    frmEditJob obj = new frmEditJob(faultObj);
+                    obj.ShowDialog();
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to get data", "Error !!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
