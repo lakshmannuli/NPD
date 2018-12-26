@@ -22,6 +22,7 @@ namespace NPD_Win_UI
         IEnumerable<FaultComplexity> Complexities;
         IEnumerable<company> Companies;
         IEnumerable<UsersInfo> Enigineers;
+        List<FaultLibrary> UploadedFiles;
         List<string> uploadedFiles = new List<string>();
         public frmEditJob()
         {
@@ -42,7 +43,7 @@ namespace NPD_Win_UI
                 Complexities = FaultComplexityRepository.GetActiveComplexities();
                 Companies = CompanyRepository.GetAllActive();
                 Enigineers = UsersinfoRepository.GetAllActiveEngineers();
-                var UploadedFiles = FaultRepository.GetFilesByFaultId(_customFault.Id);
+                UploadedFiles = FaultRepository.GetFilesByFaultId(_customFault.Id).ToList();
                 var fault = FaultRepository.GetFaultById(_customFault.Id);
 
                 ddlCompany.DataSource = Companies;
@@ -70,6 +71,9 @@ namespace NPD_Win_UI
                 ddlComplexity.SelectedValue = fault.Complexity;
                 ddlPriority.SelectedValue = fault.Priority;
 
+                dataGridView1.AutoGenerateColumns = false;
+                dataGridView1.DataSource = UploadedFiles;
+
             }
             catch (Exception ex)
             {
@@ -86,10 +90,10 @@ namespace NPD_Win_UI
         {
             this.openFileDialog1.Multiselect = true;
             this.openFileDialog1.Title = "Select Files";
-            string appPath = Path.GetDirectoryName(Application.ExecutablePath) + @"\LibraryImages\"; 
-            if (Directory.Exists(appPath) == false)                                            
-            {                                                                                  
-                Directory.CreateDirectory(appPath);                                            
+            string appPath = Path.GetDirectoryName(Application.ExecutablePath) + @"\LibraryImages\";
+            if (Directory.Exists(appPath) == false)
+            {
+                Directory.CreateDirectory(appPath);
             }
             DialogResult dr = this.openFileDialog1.ShowDialog();
             if (dr == DialogResult.OK)
@@ -97,10 +101,10 @@ namespace NPD_Win_UI
                 foreach (String file in openFileDialog1.FileNames)
                 {
                     var ext = Path.GetExtension(file);
-                    var modifiedPath = Guid.NewGuid().ToString();
+                    var modifiedPath = Guid.NewGuid().ToString()+ ext;
                     File.Copy(file, appPath + modifiedPath);
                     richTextBox1.Text += file;
-                    uploadedFiles.Add(modifiedPath);
+                    uploadedFiles.Add(Path.GetFileName(file)  + '@' + modifiedPath);
                 }
             }
         }
@@ -109,23 +113,47 @@ namespace NPD_Win_UI
         {
             try
             {
-                foreach(var file in uploadedFiles)
+                foreach (var file in uploadedFiles)
                 {
                     var imageLibrary = new FaultLibrary();
-                    imageLibrary.FileName = file;
-                    imageLibrary.Url = file;
+                    imageLibrary.FileName = file.Split('@')[0];
+                    imageLibrary.Url = file.Split('@')[1];
                     imageLibrary.FaultId = _customFault.Id;
                     imageLibrary.ModifiedBy = AuthenticatedDetails.LoggedUser.Id;
                     imageLibrary.ModifiedDate = DateTime.Now;
                     imageLibrary.CreatedDate = DateTime.Now;
                     imageLibrary.CreatedBy = AuthenticatedDetails.LoggedUser.Id;
                     FaultRepository.SaveFile(imageLibrary);
+                    UploadedFiles = FaultRepository.GetFilesByFaultId(_customFault.Id).ToList();
+                    dataGridView1.AutoGenerateColumns = false;
+                    dataGridView1.DataSource = UploadedFiles;
                 }
                 MessageBox.Show("Files Added Successfully !!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Failed to load form", "Error !!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            var fileObj = UploadedFiles[e.RowIndex];
+            saveDialog.Title = "Save";
+            saveDialog.FileName = fileObj.Url;
+            saveDialog.Filter = "All Files (*.*)|*.*";
+
+            if (saveDialog.ShowDialog() == DialogResult.OK)
+            {
+                string file = saveDialog.FileName;
+                string appPath = Path.GetDirectoryName(Application.ExecutablePath) + @"\LibraryImages\";
+                File.Copy(appPath + fileObj.Url, file);
             }
         }
     }

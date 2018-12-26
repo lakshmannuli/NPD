@@ -16,7 +16,7 @@ namespace NPD_Win_UI
         public frmMaster()
         {
             InitializeComponent();
-            LoadAllCompanies();
+            ViewJobs();
         }
 
         public void LoadAllCompanies()
