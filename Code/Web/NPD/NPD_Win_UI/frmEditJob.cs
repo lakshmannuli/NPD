@@ -83,7 +83,57 @@ namespace NPD_Win_UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (Convert.ToInt32(ddlCompany.SelectedValue) <= 0)
+                {
+                    MessageBox.Show("Please select company ", "Required", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                if (string.IsNullOrEmpty(txtLocation.Text))
+                {
+                    MessageBox.Show("Please enter location", "Required", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                if (Convert.ToInt32(ddlPriority.SelectedValue) <= -1)
+                {
+                    MessageBox.Show("Please select priority ", "Required", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                if (Convert.ToInt32(ddlComplexity.SelectedValue) <= -1)
+                {
+                    MessageBox.Show("Please select complexity ", "Required", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                if (Convert.ToInt32(ddlAssignedTo.SelectedValue) <= 0)
+                {
+                    MessageBox.Show("Please select engineer ", "Required", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
 
+                var imageLibrary = new FaultLibrary();
+
+                var fault = FaultRepository.GetFaultById(_customFault.Id);
+                fault.CompanyId = Convert.ToInt32(ddlCompany.SelectedValue);
+                fault.Complexity = Convert.ToInt32(ddlComplexity.SelectedValue);
+                fault.FaultDescription = txtFaultDescription.Text;
+                fault.FaultStatus = Convert.ToInt32(ddlPriority.SelectedValue) < 1 ? 0 : 1;
+                fault.Location = txtLocation.Text;
+                fault.MachineDescription = txtMachineDescription.Text;
+                fault.ModifiedBy = AuthenticatedDetails.LoggedUser.Id;
+                fault.ModifiedDate = DateTime.Now;
+                fault.Priority = Convert.ToInt32(ddlPriority.SelectedValue);
+                fault.StartDate = DateTime.Now;
+                fault.AssignedTo = Convert.ToInt32(ddlAssignedTo.SelectedValue);
+                fault.FaultLibraries = new List<FaultLibrary>();
+
+                FaultRepository.UpdateFault(fault);
+                MessageBox.Show("Job Updated Successfully !!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to load form", "Error !!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
