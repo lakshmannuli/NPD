@@ -24,6 +24,10 @@ namespace NPD_Win_UI
         IEnumerable<UsersInfo> Enigineers;
         List<FaultLibrary> UploadedFiles;
         List<string> uploadedFiles = new List<string>();
+
+        public delegate void syncData();
+        public syncData UpdateJobs;
+
         public frmEditJob()
         {
             InitializeComponent();
@@ -128,6 +132,7 @@ namespace NPD_Win_UI
                 fault.FaultLibraries = new List<FaultLibrary>();
 
                 FaultRepository.UpdateFault(fault);
+                UpdateJobs();
                 MessageBox.Show("Job Updated Successfully !!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)

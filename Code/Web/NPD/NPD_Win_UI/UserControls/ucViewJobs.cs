@@ -25,15 +25,14 @@ namespace NPD_Win_UI.UserControls
         {
             _parent = parent;
             Load += UcViewJobs_Load;
+
         }
 
         private void UcViewJobs_Load(object sender, EventArgs e)
         {
             try
             {
-                Faults = FaultRepository.GetFaults(new Fault()).ToList();
-                dataGridView1.AutoGenerateColumns = false;
-                dataGridView1.DataSource = Faults;
+                RefreshJobs();
             }
             catch (Exception ex)
             {
@@ -49,6 +48,7 @@ namespace NPD_Win_UI.UserControls
                 {
                     var faultObj = Faults[e.RowIndex];
                     frmEditJob obj = new frmEditJob(faultObj);
+                    obj.UpdateJobs += RefreshJobs;
                     obj.ShowDialog();
                     
                 }
@@ -57,6 +57,13 @@ namespace NPD_Win_UI.UserControls
             {
                 MessageBox.Show("Failed to get data", "Error !!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        public void RefreshJobs()
+        {
+            Faults = FaultRepository.GetFaults(new Fault()).ToList();
+            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.DataSource = Faults;
         }
     }
 }
